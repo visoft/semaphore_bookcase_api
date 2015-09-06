@@ -29,6 +29,8 @@ group :development, :test do
   gem 'byebug'
   # Use rspec for BDD
   gem 'rspec-rails', '3.1.0'
+  # Use factory_girl for creating factories
+  gem 'factory_girl_rails'
 end
 
 group :development do
