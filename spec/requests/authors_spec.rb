@@ -83,4 +83,14 @@ RSpec.describe "Authors", :type => :request do
       expect(author_name) == 'Damien White'
     end
   end
+
+  describe "DELETE /authors/:id" do
+    it "deletes the specified author" do
+      FactoryGirl.create :author, name: 'John Doe', id: 1
+
+      delete '/authors/1'
+
+      expect(response.status).to eq 204
+    end
+  end
 end
