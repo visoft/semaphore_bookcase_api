@@ -55,4 +55,32 @@ RSpec.describe "Authors", :type => :request do
       expect(author_name) == 'John Doe'
     end
   end
+
+  describe "PUT /authors/1" do
+    it "updates the specified author" do
+      FactoryGirl.create :author, name: 'John Doe', id: 1
+
+      json = '{
+        "data":
+          {
+            "type": "authors",
+            "id": 1,
+            "attributes": {
+              "name": "Damien White"
+            }
+          }
+        }'
+
+      put '/authors/1',
+        params: json,
+        headers: { 'Content-Type': 'application/vnd.api+json' }
+
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+
+      author_name = body['data']['attributes']['name']
+      expect(author_name) == 'Damien White'
+    end
+  end
 end
