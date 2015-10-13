@@ -11,8 +11,10 @@ RSpec.describe "Authors", :type => :request do
       expect(response.status).to eq 200
 
       body = JSON.parse(response.body)
-      author_names = body['data'].map{|d| d['attributes']['name'] }
+      author_names = body['data'].map{|author| author['attributes']['name'] }
+      author_ids = body['data'].map{|author| author['id'] }
       expect(author_names).to match_array(['John Doe', 'Damien White'])
+      expect(author_ids).to match_array(["1", "2"])
     end
   end
 
@@ -33,18 +35,17 @@ RSpec.describe "Authors", :type => :request do
 
   describe "POST /authors" do
     it "creates the specified author" do
-      json = '{
-        "data":
-          {
-            "type": "authors",
-            "attributes": {
-              "name": "John Doe"
-            }
+      author = {
+        data: {
+          type: "authors",
+          attributes: {
+            name: "John Doe"
           }
-        }'
+        }
+      }
 
       post '/authors',
-        params: json,
+        params: author.to_json,
         headers: { 'Content-Type': 'application/vnd.api+json' }
 
       expect(response.status).to eq 201
@@ -56,23 +57,22 @@ RSpec.describe "Authors", :type => :request do
     end
   end
 
-  describe "PUT /authors/1" do
+  describe "PUT /authors/:id" do
     it "updates the specified author" do
       FactoryGirl.create :author, name: 'John Doe', id: 1
 
-      json = '{
-        "data":
-          {
-            "type": "authors",
-            "id": 1,
-            "attributes": {
-              "name": "Damien White"
-            }
+      author = {
+        data: {
+          type: "authors",
+          id: 1,
+          attributes: {
+            name: "Damien White"
           }
-        }'
+        }
+      }
 
       put '/authors/1',
-        params: json,
+        params: author.to_json,
         headers: { 'Content-Type': 'application/vnd.api+json' }
 
       expect(response.status).to eq 200
