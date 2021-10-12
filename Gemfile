@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0.beta4'
+gem 'rails', '~> 6.1.4'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -14,7 +14,7 @@ gem 'sqlite3'
 # gem 'capistrano-rails', group: :development
 
 # Use ActiveModelSerializers to serialize JSON responses
-gem 'active_model_serializers', '~> 0.10.0.rc5'
+gem 'active_model_serializers', '~> 0.10.12'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -23,7 +23,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Use rspec for BDD
-  gem 'rspec-rails', '4.1.2'
+  gem 'rspec-rails', '5.0.2'
   # Use factory_girl for creating factories
   gem 'factory_girl_rails'
 end
