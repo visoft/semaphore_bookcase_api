@@ -23,7 +23,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Use rspec for BDD
-  gem 'rspec-rails', '5.1.2'
+  gem 'rspec-rails', '6.0.1'
   # Use factory_girl for creating factories
   gem 'factory_girl_rails'
 end
